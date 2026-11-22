@@ -1,0 +1,55 @@
+name: SpaceXClone
+options:
+  bundleIdPrefix: com.yourname
+  deploymentTarget:
+    iOS: "15.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_VERSION: "5.0"
+    DEVELOPMENT_TEAM: ""
+    CODE_SIGN_IDENTITY: ""
+    CODE_SIGNING_REQUIRED: "NO"
+    CODE_SIGNING_ALLOWED: "NO"
+
+targets:
+  SpaceXClone:
+    type: application
+    platform: iOS
+    deploymentTarget: "15.0"
+    sources:
+      - path: Sources
+    info:
+      path: Sources/Info.plist
+      properties:
+        CFBundleDisplayName: SpaceX
+        CFBundleShortVersionString: "1.1"
+        CFBundleVersion: "1"
+        MinimumOSVersion: "15.0"
+        UIRequiredDeviceCapabilities: [arm64e]
+        UIDeviceFamily: [1, 2]
+        UILaunchStoryboardName: ""
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+          UISceneConfigurations:
+            UIWindowSceneSessionRoleApplication:
+              - UISceneConfigurationName: "Default Configuration"
+                UISceneDelegateClassName: "$(PRODUCT_MODULE_NAME).SceneDelegate"
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
+          NSAllowsLocalNetworking: true
+        NSLocalNetworkUsageDescription: "需要访问本地网络以完成卡密验证"
+        UIBackgroundModes: []
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.yourname.spacexclone
+        TARGETED_DEVICE_FAMILY: "1,2"
+        ARCHS: arm64
+        ONLY_ACTIVE_ARCH: "NO"
+        ENABLE_BITCODE: "NO"
+        IPHONEOS_DEPLOYMENT_TARGET: "15.0"
