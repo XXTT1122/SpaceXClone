@@ -115,6 +115,17 @@ final class MainViewController: UIViewController {
         stack.addArrangedSubview(firmwareCard)
         buildFirmwareCard()
 
+        // 工具入口
+        let tools = UIButton(type: .system)
+        tools.setTitle("设备信息 / 工具 / 网络诊断", for: .normal)
+        tools.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        tools.setTitleColor(.white, for: .normal)
+        tools.backgroundColor = UIColor(red: 0.15, green: 0.30, blue: 0.62, alpha: 0.95)
+        tools.layer.cornerRadius = 12
+        tools.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        tools.addTarget(self, action: #selector(onTools), for: .touchUpInside)
+        stack.addArrangedSubview(tools)
+
         // 关闭
         let close = UIButton(type: .system)
         close.setTitle("退出 HUD", for: .normal)
@@ -383,6 +394,12 @@ final class MainViewController: UIViewController {
 
     @objc private func onClose() {
         dismiss(animated: true)
+    }
+
+    @objc private func onTools() {
+        let vc = ToolsViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
 
     private func toast(_ msg: String) {
