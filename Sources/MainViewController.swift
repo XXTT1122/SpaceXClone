@@ -148,6 +148,17 @@ final class MainViewController: UIViewController {
         hudBtn.addTarget(self, action: #selector(onHUD), for: .touchUpInside)
         stack.addArrangedSubview(hudBtn)
 
+        // 设置入口
+        let settings = UIButton(type: .system)
+        settings.setTitle("设置", for: .normal)
+        settings.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        settings.setTitleColor(.white, for: .normal)
+        settings.backgroundColor = UIColor(white: 1, alpha: 0.12)
+        settings.layer.cornerRadius = 11
+        settings.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        settings.addTarget(self, action: #selector(onSettings), for: .touchUpInside)
+        stack.addArrangedSubview(settings)
+
         // 关闭
         let close = UIButton(type: .system)
         close.setTitle("退出 HUD", for: .normal)
@@ -441,6 +452,12 @@ final class MainViewController: UIViewController {
             }
             toast("悬浮球已显示，可拖动，点击回到主界面")
         }
+    }
+
+    @objc private func onSettings() {
+        let vc = SettingsViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
 
     private func toast(_ msg: String) {
