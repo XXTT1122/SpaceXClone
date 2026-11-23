@@ -126,6 +126,28 @@ final class MainViewController: UIViewController {
         tools.addTarget(self, action: #selector(onTools), for: .touchUpInside)
         stack.addArrangedSubview(tools)
 
+        // 固件页入口
+        let fw = UIButton(type: .system)
+        fw.setTitle("固件下载 / 文件管理", for: .normal)
+        fw.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        fw.setTitleColor(.white, for: .normal)
+        fw.backgroundColor = UIColor(red: 0.12, green: 0.42, blue: 0.35, alpha: 0.95)
+        fw.layer.cornerRadius = 12
+        fw.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        fw.addTarget(self, action: #selector(onFirmware), for: .touchUpInside)
+        stack.addArrangedSubview(fw)
+
+        // 悬浮窗开关
+        let hudBtn = UIButton(type: .system)
+        hudBtn.setTitle("显示悬浮球", for: .normal)
+        hudBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        hudBtn.setTitleColor(.white, for: .normal)
+        hudBtn.backgroundColor = UIColor(red: 0.32, green: 0.22, blue: 0.55, alpha: 0.95)
+        hudBtn.layer.cornerRadius = 12
+        hudBtn.heightAnchor.constraint(equalToConstant: 46).isActive = true
+        hudBtn.addTarget(self, action: #selector(onHUD), for: .touchUpInside)
+        stack.addArrangedSubview(hudBtn)
+
         // 关闭
         let close = UIButton(type: .system)
         close.setTitle("退出 HUD", for: .normal)
@@ -400,6 +422,25 @@ final class MainViewController: UIViewController {
         let vc = ToolsViewController()
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
+    }
+
+    @objc private func onFirmware() {
+        let vc = FirmwareViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    }
+
+    @objc private func onHUD() {
+        if HUDFloat.shared.isVisible {
+            HUDFloat.shared.hide()
+            toast("悬浮球已关闭")
+        } else {
+            HUDFloat.shared.show { [weak self] in
+                HUDFloat.shared.hide()
+                self?.toast("已回到主界面")
+            }
+            toast("悬浮球已显示，可拖动，点击回到主界面")
+        }
     }
 
     private func toast(_ msg: String) {
