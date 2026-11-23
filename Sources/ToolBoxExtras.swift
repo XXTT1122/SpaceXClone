@@ -1,5 +1,4 @@
 import Foundation
-import CommonCrypto
 
 /// 工具扩展：JSON 格式化 / 时间戳 / 随机密码 / 设备标识
 enum ToolBoxExtras {
