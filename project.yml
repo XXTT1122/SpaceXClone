@@ -7,13 +7,9 @@ options:
 
 settings:
   base:
-    MARKETING_VERSION: "1.0"
+    MARKETING_VERSION: "1.1"
     CURRENT_PROJECT_VERSION: "1"
     SWIFT_VERSION: "5.0"
-    DEVELOPMENT_TEAM: ""
-    CODE_SIGN_IDENTITY: ""
-    CODE_SIGNING_REQUIRED: "NO"
-    CODE_SIGNING_ALLOWED: "NO"
 
 targets:
   SpaceXClone:
@@ -31,7 +27,6 @@ targets:
         MinimumOSVersion: "15.0"
         UIRequiredDeviceCapabilities: [arm64e]
         UIDeviceFamily: [1, 2]
-        UILaunchStoryboardName: ""
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
           UISceneConfigurations:
@@ -44,12 +39,14 @@ targets:
           NSAllowsArbitraryLoads: true
           NSAllowsLocalNetworking: true
         NSLocalNetworkUsageDescription: "需要访问本地网络以完成卡密验证"
-        UIBackgroundModes: []
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: true
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.yourname.spacexclone
         TARGETED_DEVICE_FAMILY: "1,2"
         ARCHS: arm64
         ONLY_ACTIVE_ARCH: "NO"
-        ENABLE_BITCODE: "NO"
         IPHONEOS_DEPLOYMENT_TARGET: "15.0"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: ""
